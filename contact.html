@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="contact.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+    body {
+      margin: 0;
+      box-sizing: border-box;
+	  background-color: #fef9e7;
+	  overflow-wrap: break-word;
+    }
+
+    .container {
+      line-height: 150%;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      background-color: #2e3550;
+     text-align: center;
+    }
+
+    .header h1 {
+      color: #FFFFFF;
+      font-size: 30px;
+      font-family: 'lucida handwriting';
+      text-align: center;
+    }
+    
+
+    .content {
+      margin-left: 0px;
+      border-left: 0px solid #d4d4d4;
+      padding: 1em;
+      overflow: hidden;
+    }
+
+    .footer {
+     position: fixed;
+	 left: 0;
+	 bottom: 0;
+	 width: 100%;
+      background-color: #2e3550;
+      color: white;
+      text-align: center;
+       padding: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+        <header class="header">
+          <img src="logo.jpg" width="80" height="80" alt="" /><h1>FASTLINE INSTITUTE OF HIGHER EDUCATION-KAMPALA </h1><img src="cap 3.jpg" width="100px" height="80px"/>
+    </header>
+     <div class="topnav">
+        <a class="active" href="index.html" target="_self">Home</a>
+        <a href="about.html" target="_self">About</a>
+        <a href="structure.html" target="_self">Structure</a>
+        <a href="courses.html" target="_self">Courses</a>
+        <a href="requirements.html" target="_self">Requirements</a>
+        <a href="form.html" target="_self">Online Application</a>
+		<a href="elearning.html" target="_self">E-Learning </a>
+		<a href="portal.html" target="_self">Student Portal </a>
+        <a href="contact.html" target="_self">Contact </a>
+		<a href="Notice.html" target="_self">Notice Board </a>
+      </div>
+     
+    <main class="content">
+       <table bgcolor="#009933" width="100%"><tr><td><h2>Contact us</h2></td></tr></table>
+                        <div class="widget-contact-form">
+                            <!-- contact-form -->
+                            <div class="info-boxes error-message alert-boxes error-alert" id="feedback-form-errors">
+                                
+                                <div class="message"></div>
+                            </div>
+                            <div class="email_server_responce"></div>
+							<fieldset width="20%">
+<legend> <strong>Enter your information and message here!</strong> </legend>
+                            <b> <div class="hero">
+  <form action="https://formsubmit.co/fastlineinstitute@gmail.com" method="post">
+  <div class="mesage-icon">
+  <i class="bi bi-telegram"></i>
+  <span>Message</span>
+  </div><br>
+  <div id="input-field">
+  <i class="bi bi-person"></i>
+  <input type="text" oninput="this.value = this.value.replace(/[0-9]/g,'')" onkeypress="return /[a-zA-Z]/i.test(event.key)" placeholder="Name" name="Name" required >
+  </div>
+  <div id="input-field">
+  <i class="bi bi-telephone"></i>
+  <input type="tel" id="phone" name="phone"  pattern="[0-9]{3}[0-9]{3}[0-9]{4}" onkeypress="return /[0-9]/i.test(event.key)" placeholder=" Phone no: xxx xxx xxxx" required />
+  </div>
+  <div id="input-field">
+  <i class="bi bi-envelope"></i>
+  <input type="email" id="email" name="email" placeholder="Email Address" required />
+  </div>
+  <div id="input-field">
+  <i class="bi bi-chat-right-dots"></i>
+  <textarea name="message" placeholder="Message" rows="10"></textarea>
+  </div> 
+  <input type="Submit" value="Submit" class="send-btn">
+   <input type="Reset" value="Reset" class="send-btn">
+  </form>
+                                    </div>
+  <div class="info">
+      <center>  For more information contact us via:<br><br>
+          <i class="bi bi-telephone"></i>    <a href="tel:+256774182449">Call</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <i class="bi bi-chat-right-dots"></i>   <a href="sms:+256774182449">SMS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <i class="bi bi-whatsapp"></i>     <a href="https://api.whatsapp.com/send?phone=256702840251">WhatsApp</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <i class="bi bi-envelope"></i>      <a href="mailto:fastlineinstitute@gmail.com,odongorob15@gmail.com">Email</a>
+      </center>
+      </div>                              
+                                </b> </fieldset>								
+    </main>
+    <footer class="footer">Location: Ssonde-Namugongo along Kiwanga Rd | Tel: +256774182449/+256702840251 | Email: fastlineinstitute@gmail.com  </footer>
+  </div>
+</body>
+</html>
+
+
