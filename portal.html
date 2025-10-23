@@ -1,22 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Student Portal</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<link rel="stylesheet" href="style.css">
-<style>
-body {font-family: Arial, Helvetica, sans-serif;
-      background-image: url('images/students 3.jpg');
-	   background-repeat: no-repeat;
-       background-attachment: fixed;
-       background-size: cover;
-	  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* Full-width input fields */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #fef9e7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            padding-bottom: 80px; /* Space for fixed footer */
+        }
+
+        .main-content {
+            flex: 1;
+    display: flex;
+    justify-content: center;        /* ← HORIZONTAL CENTERING */
+    align-items: flex-start;        /* ← VERTICAL TOP POSITIONING */
+    min-height: calc(100vh - 80px);
+    padding-top: 80px;              /* ← TOP SPACING FROM EDGE */
+        }
+
+        .login-page {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 60px 40px;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c);
+            background-size: 300% 100%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .login-heading {
+            margin-bottom: 40px;
+        }
+
+        .login-heading h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            background: #04AA6D;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .login-heading p {
+            color: #04AA6D;
+            font-size: 1.1rem;
+            font-weight: 400;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .login-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 40px;
+            background: #04AA6D;
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            text-decoration: none;
+        }
+
+        .login-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+        }
+
+        .login-button:active {
+            transform: translateY(-2px);
+        }
+
+        .login-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .login-button:hover::before {
+            left: 100%;
+        }
+
+        .login-icon {
+            font-size: 1.3rem;
+        }
+
+        /* FIXED FOOTER */
+        .page-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 14px;
+            line-height: 1.5;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content p {
+            margin: 0;
+            word-break: break-word;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+                padding-bottom: 70px;
+            }
+            
+            .login-page {
+                padding: 40px 24px;
+                margin: 10px;
+            }
+            
+            .page-footer {
+                font-size: 13px;
+                padding: 12px 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-content p {
+                font-size: 12px;
+            }
+        }
+
+        /* Loading Animation */
+        .btn-loading {
+            position: relative;
+            color: transparent;
+        }
+
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            margin-left: -10px;
+            margin-top: -10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Success Animation */
+        .success-animation {
+            animation: successPulse 0.6s ease-out;
+        }
+ .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px;
+      background-color: #2e3550;
+
+    }
+
+    .header h1 {
+     text-align: center;
+      color: #FFFFFF;
+      font-size: 30px;
+      font-family: 'lucida handwriting';
+     
+    }
+
+    .topnav {
+  overflow: hidden;
+  background-color: #333;
+
+  
+}
+
+.topnav a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+background-color: white;
+border-radius: 50px;
+}
+.topnav a:hover {
+  background-color: #04AA6D;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+    .content {
+      margin-left: 0;
+      border-left: 0px solid #d4d4d4;
+      padding: 1em;
+      overflow: scroll;
+    }
+
+        @keyframes successPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+		/* Full-width input fields */
 input[type=text], input[type=password] {
   width: 100%;
   padding: 12px 20px;
@@ -50,7 +305,7 @@ button:hover {
 
 /* Center the image and position the close button */
 .imgcontainer {
-  text-align: center;
+  text-align: Center;
   margin: 24px 0 12px 0;
   position: relative;
 }
@@ -62,6 +317,8 @@ img.avatar {
 
 .container {
   padding: 16px;
+  text-align: left;
+  color: green;
 }
 
 span.psw {
@@ -89,7 +346,8 @@ span.psw {
   background-color: #fefefe;
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  justify-content: center;
+  width: 50%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button (x) */
@@ -126,11 +384,22 @@ color: #4CAF50;
   to {transform: scale(1)}
 }
 .loginbutton {
- max-width: 500px;
-  margin: auto;
-  padding: 10px;
-  text-align: Center;
-  top: 20;
+ display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 2px 40px;
+            background: #04AA6D;
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            text-decoration: none;
 }
 
 
@@ -143,12 +412,11 @@ color: #4CAF50;
   .cancelbtn {
      width: 100%;
   }
-}
-</style>
-</head>
 
+    </style>
+</head>
 <body>
-  <div>
+<div>
     <header class="header">
 
         <img src="logo.jpg" width="80" height="80" alt="" /><h1>FASTLINE INSTITUTE OF HIGHER EDUCATION - KAMPALA</h1><img src="cap 3.jpg" width="100" height="80" alt=""/>
@@ -167,11 +435,15 @@ color: #4CAF50;
         <a href="contact.html" target="_self">Contact </a>
 		<a href="Notice.html" target="_self">Notice Board </a>
       </div>
-	  <div class ="loginbutton">
-	  
-   <h2>Student Login</h2>
 
-<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+    <div class="main-content">
+        <main class="login-page">
+            <div class="login-heading">
+                <h1>Student Login</h1>
+                <p>Access your learning portal securely</p>
+            </div>
+ <div class ="loginbutton">
+	  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
 </div>
 
 <div id="id01" class="modal">
@@ -213,10 +485,41 @@ window.onclick = function(event) {
 }
 </script>
 
-   
-     <div class="footer">Location: Ssonde-Namugongo along Kiwanga Rd | Tel: +256774182449/+256702840251 | Email: fastlineinstitute@gmail.com </footer>
-  </div>
+        </main>
+    </div>
+
+    <!-- FIXED FOOTER -->
+    <footer class="page-footer">
+        <div class="footer-content">
+            <p>Location: Ssonde-Namugongo along Kiwanga Rd | Tel: +256774182449/+256702840251 | Email: fastlineinstitute@gmail.com</p>
+        </div>
+    </footer>
+
+    <script>
+        const loginBtn = document.getElementById('loginBtn');
+        const originalContent = loginBtn.innerHTML;
+
+        loginBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Loading state
+            this.classList.add('btn-loading');
+            this.innerHTML = '<span>Redirecting...</span>';
+            
+            // Simulate login process
+            setTimeout(() => {
+                this.classList.remove('btn-loading');
+                this.innerHTML = '<span class="login-icon">✅</span><span>Login Successful!</span>';
+                this.classList.add('success-animation');
+                
+                // Redirect after success
+                setTimeout(() => {
+                    this.innerHTML = originalContent;
+                    // Replace with actual login redirect
+                    alert('Welcome to Student Portal! 🎓');
+                }, 1500);
+            }, 2000);
+        });
+    </script>
 </body>
 </html>
-
-
