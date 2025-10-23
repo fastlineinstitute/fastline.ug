@@ -1,92 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>E-Learning</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<link rel="stylesheet" href="style.css">
-<style>
-body {
-background-image: url('images/grad.png');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Learning</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+           background-color: #fef9e7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 120px);
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 420px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-header h1 {
+            color: #4CAF50;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .login-header p {
+            color: #4CAF50;
+            font-size: 16px;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 16px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #667eea;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-group input::placeholder {
+            color: #9ca3af;
+        }
+
+        .form-group label {
+            position: absolute;
+            left: 20px;
+            top: 16px;
+            color: #9ca3af;
+            font-size: 16px;
+            font-weight: 500;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus + label,
+        .form-group input:not(:placeholder-shown) + label {
+            top: -10px;
+            left: 12px;
+            font-size: 12px;
+            color: #667eea;
+            background: #fff;
+            padding: 0 6px;
+            border-radius: 6px;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #9ca3af;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .password-toggle:hover {
+            color: #667eea;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+            gap: 12px;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #667eea;
+        }
+
+        .remember-me label {
+            color: #4CAF50;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        
+        
+        
+        /* NEW FOOTER STYLES */
+        .page-footer {
+            background: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: auto;
+            font-size: 14px;
+            line-height: 1.6;
+            box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .login-container {
+                padding: 30px 24px;
+                margin: 10px;
+            }
+            
+            .login-header h1 {
+                font-size: 24px;
+            }
+            
+            .page-footer {
+                font-size: 13px;
+                padding: 15px 0;
+            }
+        }
+
+        /* Loading animation */
+        .btn-loading {
+            position: relative;
+        }
+		.header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px;
+      background-color: #2e3550;
+
+    }
+
+    .header h1 {
+     text-align: center;
+      color: #FFFFFF;
+      font-size: 30px;
+      font-family: 'lucida handwriting';
+     
+    }
+
+    .topnav {
+  overflow: hidden;
+  background-color: #333;
+
   
-  /*style.css*/
-.elearning {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: sans-serif;
-    line-height: 1.5;
-    min-height: 100vh;
-    flex-direction: column;
-    margin: 0;
 }
 
-.main {
-    background-color: transparent;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    padding: 10px 20px;
-    transition: transform 0.2s;
-    width: 500px;
-    text-align: center;
+.topnav a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+background-color: white;
+border-radius: 50px;
+}
+.topnav a:hover {
+  background-color: #04AA6D;
+  color: black;
 }
 
-h1,h3 {
-    color: #4CAF50;
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
 }
 
-label {
-    display: block;
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    text-align: left;
-    color: #4CAF50;
-    font-weight: bold;
+    .content {
+      margin-left: 0;
+      border-left: 0px solid #d4d4d4;
+      padding: 1em;
+      overflow: scroll;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+
+     a {
+     
+      color: blue;
+      text-decoration: underline;
+	  
+	
+    }
+*{
+        font-family: 'lucida';
 }
+     a.active {
+      background-color: #009933;
+      color: white;
+	  text-align: center;
+    }
+
+    li a:hover:not(.active) {
+      background-color: #009933;
+      color: white;
+	  text-align: center;
+    }
 
 
-input {
-    display: block;
-    width: 100%;
-    margin-bottom: 15px;
-    padding: 10px;
-    box-sizing: border-box;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            margin-left: -10px;
+            margin-top: -10px;
+            border: 2px solid transparent;
+            border-top-color: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
 
-button {
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    border: none;
-    color: white;
-    cursor: pointer;
-    background-color: #4CAF50;
-    width: 100%;
-    font-size: 16px;
-}
-
-.wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-</style>
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <div>
+<div>
     <header class="header">
 
         <img src="logo.jpg" width="80" height="80" alt="" /><h1>FASTLINE INSTITUTE OF HIGHER EDUCATION - KAMPALA</h1><img src="cap 3.jpg" width="100" height="80" alt=""/>
@@ -105,37 +351,98 @@ button {
         <a href="contact.html" target="_self">Contact </a>
 		<a href="Notice.html" target="_self">Notice Board </a>
       </div>
-	  <div class="elearning">
-	   <div class="main">
-            <h1>E-Learning portal</h1>
-            <h3>Enter your login credentials</h3>
-            <form action="">
-                  <label for="first">
-                        Username:
-                  </label>
-                  <input type="text" 
-                         id="first" 
-                         name="first" 
-                         placeholder="Enter your Username" required>
+    <div class="main-content">
+        <div class="login-container">
+            <div class="login-header">
+                <h1>E-Learning Portal</h1>
+                <p>Please sign in to your account</p>
+            </div>
 
-                  <label for="password">
-                        Password:
-                  </label>
-                  <input type="password"
-                         id="password" 
-                         name="password"
-                         placeholder="Enter your Password" required>
+            <form id="loginForm">
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder=" " required>
+                    <label for="email">Email Address</label>
+                </div>
 
-                  <div class="wrap">
-                        <button type="submit"
-                                onclick="solve()">
-                              Submit
-                        </button>
-                  </div>
+                <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder=" " required>
+                    <label for="password">Password</label>
+                    <button type="button" class="password-toggle" onclick="togglePassword()" title="Toggle password visibility">
+                        👁️
+                    </button>
+                </div>
+
+                <div class="remember-me">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+
+                <button type="submit" class="login-btn" id="loginBtn">
+                    Sign In
+                </button>
             </form>
-	  </div>
+
+  
+
+            
+        </div>
+    </div>
+
+    <!-- NEW FOOTER -->
+    <footer class="page-footer">
+        <div class="footer-content">
+            <p>Location: Ssonde-Namugongo along Kiwanga Rd | Tel: +256774182449/+256702840251 | Email: fastlineinstitute@gmail.com</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle password visibility
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleBtn = document.querySelector('.password-toggle');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleBtn.textContent = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                toggleBtn.textContent = '👁️';
+            }
+        }
+
+        // Form submission with loading state
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const loginBtn = document.getElementById('loginBtn');
+            const originalText = loginBtn.textContent;
+            
+            loginBtn.disabled = true;
+            loginBtn.classList.add('btn-loading');
+            loginBtn.textContent = 'Signing In...';
+            
+            // Simulate API call
+            setTimeout(() => {
+                loginBtn.disabled = false;
+                loginBtn.classList.remove('btn-loading');
+                loginBtn.textContent = originalText;
+                
+                alert('Login successful! (This is a demo)');
+            }, 2000);
+        });
+
+        // Floating label animation enhancement
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.parentElement.classList.remove('focused');
+                }
+            });
+        });
+    </script>
 </body>
- <div class="footer">Location: Ssonde-Namugongo along Kiwanga Rd | Tel: +256774182449/+256702840251 | Email: fastlineinstitute@gmail.com </footer></div>
 </html>
-
-
